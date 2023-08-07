@@ -1,0 +1,9 @@
+'use client'
+import React from 'react'
+import Layout from '@/components/Layout'
+import { useSession } from 'next-auth/react'
+export default function LayoutProvider({ children }) {
+  const { data, status } = useSession()
+  if (status === 'loading') return 'loading...'
+  return data ? <Layout>{children}</Layout> : <>{children}</>
+}
